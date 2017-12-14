@@ -1,0 +1,43 @@
+<h2>Edit product</h2>
+<form (ngSubmit)="editProduct()" [formGroup]="editProductForm" #editFormm="ngForm">
+  <div class="form-group row">
+    <label for="name" class="col-sm-2 col-form-label">Name:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="name" formControlName="name">
+      <div *ngIf="nameMessage" class="alert alert-danger">
+        <span>{{nameMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="imageUrl" class="col-sm-2 col-form-label">Image URL:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="imageUrl" formControlName="imageUrl">
+      <div *ngIf="imageUrlMessage" class="alert alert-danger">
+        <span>{{imageUrlMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="description" class="col-sm-2 col-form-label">Desctiption:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="description" formControlName="description">
+      <div *ngIf="desctiptionMessage" class="alert alert-danger">
+        <span>{{desctiptionMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="price" class="col-sm-2 col-form-label">Price:</label>
+    <div class="col-sm-4">
+      <input type="number" class="form-control" id="price" formControlName="price">
+      <div *ngIf="priceMessage" class="alert alert-danger">
+        <span>{{priceMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="btn-buy-prodicts">
+    <button (click)="cancel()" type="submit" class="btn btn-outline-danger">Cancel</button>
+    <button [disabled]="!editFormm.form.valid" type="submit" class="btn btn-outline-primary">Edit product</button>
+  </div>
+</form>

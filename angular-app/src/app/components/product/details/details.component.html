@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-lg-4">
+    <img class="image-details img-thumbnail" src="{{detailsData?.imageUrl}}" alt="image">
+  </div>
+  <div class="col-lg-4">
+    <h3>{{detailsData?.name}}</h3>
+    <p>Price:
+      <b>${{detailsData?.price}}</b>
+    </p>
+    <div class="mg-10">
+      date:
+      <b>{{detailsData?.creationDate | date}}</b>
+    </div>
+    <div class="mg-10">
+      description:
+      <b>{{detailsData?.description}}</b>
+    </div>
+    <div class="mg-10">
+      <button (click)="buy(detailsData?._id)" type="button" class="btn btn-outline-success">Buy</button>
+      <button *ngIf="isAdmin()" (click)="edit(detailsData?._id)" type="button" class="btn btn-outline-warning">Edit</button>
+      <button *ngIf="isAdmin()"  (click)="delete(detailsData?._id)" type="button" class="btn btn-outline-danger">Delete</button>
+    </div>
+    <div class="mg-10">
+      <button (click)="like(detailsData?._id)" *ngIf="!userLike" type="button" class="btn btn-success">Like</button>
+      <button (click)="dislike(detailsData?._id)" *ngIf="userLike" type="button" class="btn btn-danger">Dislike</button>
+    </div>
+    <div>Likes:
+      <b>{{likes}}</b>
+    </div>
+  </div>
+</div>
+<div class="row space-top">
+  <div class="col-md-8">
+    <form (ngSubmit)="commentSubmit()" #commentForm="ngForm">
+      <h4>Leave a comment</h4>
+      <div class="form-group">
+        <textarea class="form-control" required [(ngModel)]="commentModel.comment" name="comment" #comment="ngModel"></textarea>
+      </div>
+      <div class="form-group">
+        <button [disabled]="commentForm.form.invalid" type="submit" class="btn btn-outline-primary">Send</button>
+      </div>
+    </form>
+    <h4>Comments</h4>
+  </div>
+  <div class="col-md-8" *ngFor="let comment of detailsData?.comments">
+    <div class="card text-black bg-light">
+      <div class="card-body">
+        <blockquote class="card-blockquote">
+          <p>{{comment.comment}}</p>
+          <footer>
+            <b>Pesho</b>
+            <cite title="Source Title">before {{dateFormating(comment.creationDate)}}</cite>
+            <button *ngIf="canDeleteCommnet(comment.creator)" (click)="deleteComment(comment._id)" type="button" class="btn btn-link text-danger text-right">Delete</button>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</div>

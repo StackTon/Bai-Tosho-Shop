@@ -1,0 +1,42 @@
+<h2>Add product</h2>
+<form (ngSubmit)="createProduct()" [formGroup]="createProductForm" #createFormm="ngForm">
+  <div class="form-group row">
+    <label for="username" class="col-sm-2 col-form-label">Name:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="username" formControlName="name">
+      <div *ngIf="nameMessage" class="alert alert-danger">
+        <span>{{nameMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Image URL:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="inputEmail3" formControlName="imageUrl">
+      <div *ngIf="imageUrlMessage" class="alert alert-danger">
+        <span>{{imageUrlMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Desctiption:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="inputPassword3" formControlName="description">
+      <div *ngIf="desctiptionMessage" class="alert alert-danger">
+        <span>{{desctiptionMessage}}</span>
+      </div>
+    </div> 
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Price:</label>
+    <div class="col-sm-4">
+      <input type="number" class="form-control" id="inputPassword3" formControlName="price">
+      <div *ngIf="priceMessage" class="alert alert-danger">
+        <span>{{priceMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="btn-buy-prodicts">
+    <button [disabled]="!createFormm.form.valid" type="submit" class="btn btn-outline-primary">Add product</button>
+  </div>
+</form> 

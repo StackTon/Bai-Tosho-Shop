@@ -1,0 +1,52 @@
+<h2>Register please</h2>
+<form (ngSubmit)="register()" [formGroup]="registerForm" #registerFormm="ngForm">
+  <div class="form-group row">
+    <label for="username" class="col-sm-2 col-form-label">Username:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="username" formControlName="username">
+      <div *ngIf="usernameMessage" class="alert alert-danger">
+        <span>{{usernameMessage}}</span>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="form-group row">
+    <label for="password" class="col-sm-2 col-form-label">Password:</label>
+    <div class="col-sm-4">
+      <input type="password" class="form-control" id="password" formControlName="password">
+      <div *ngIf="passwordMessage" class="alert alert-danger">
+        <span>{{passwordMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password:</label>
+    <div class="col-sm-4">
+      <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+      <div *ngIf="confirmPasswordMessage" class="alert alert-danger">
+        <span>{{confirmPasswordMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="firstName" class="col-sm-2 col-form-label">First Name: (optional)</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="firstName" formControlName="firstName">
+      <div *ngIf="firstNameMessage" class="alert alert-danger">
+        <span>{{firstNameMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="lastName" class="col-sm-2 col-form-label">Last Name: (optional)</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="lastName" formControlName="lastName">
+      <div *ngIf="lastNameMessage" class="alert alert-danger">
+        <span>{{lastNameMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="submitBtn">
+    <button type="submit" [disabled]="!registerFormm.form.valid" class="btn btn-outline-primary" >Register</button>
+  </div>
+</form>

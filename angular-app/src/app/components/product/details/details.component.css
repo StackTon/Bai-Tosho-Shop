@@ -1,0 +1,21 @@
+.image-details {
+  width: 400px;
+  height: 250px;
+}
+
+.mg-10 {
+  margin-top: 15px;
+}
+
+.card-blockquote>img {
+  width: 100%;
+}
+
+.card {
+  margin-bottom: 1em;
+}
+
+.img-btn {
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,16 @@
+<h1 class="text-center">Greetings Traveler</h1>
+<h2 class="text-center">Welecom to Bai Tosho's shop</h2>
+
+<div class="row  text-center">
+  <div class="col-lg-4 product" *ngFor="let product of products">
+    <img class="img-thumbnail image" src="{{product.imageUrl}}" alt="image">
+    <h3 class="text-center">{{product.name}}</h3>
+    <p>Price:
+      <b>${{product.price}}</b>
+    </p>
+    <button *ngIf="isAuth()" (click)="details(product._id)" type="button" class="btn btn-outline-primary">Details</button>
+    <button *ngIf="isAuth()" (click)="buy(product._id)" type="button" class="btn btn-outline-success">Buy</button>
+    <button *ngIf="isAdmin()" (click)="edit(product._id)" type="button" class="btn btn-outline-warning">Edit</button>
+    <button *ngIf="isAdmin()" (click)="delete(product._id)" type="button" class="btn btn-outline-danger">Delete</button>
+  </div>
+</div>
