@@ -9,7 +9,7 @@
     </p>
     <div class="mg-10">
       date:
-      <b>{{detailsData?.creationDate | date}}</b>
+      <b>{{detailsData?.creationDate | date: 'dd/MM/yyyy'}}</b>
     </div>
     <div class="mg-10">
       description:
@@ -18,7 +18,7 @@
     <div class="mg-10">
       <button (click)="buy(detailsData?._id)" type="button" class="btn btn-outline-success">Buy</button>
       <button *ngIf="isAdmin()" (click)="edit(detailsData?._id)" type="button" class="btn btn-outline-warning">Edit</button>
-      <button *ngIf="isAdmin()"  (click)="delete(detailsData?._id)" type="button" class="btn btn-outline-danger">Delete</button>
+      <button *ngIf="isAdmin()" (click)="delete(detailsData?._id)" type="button" class="btn btn-outline-danger">Delete</button>
     </div>
     <div class="mg-10">
       <button (click)="like(detailsData?._id)" *ngIf="!userLike" type="button" class="btn btn-success">Like</button>
@@ -48,9 +48,9 @@
         <blockquote class="card-blockquote">
           <p>{{comment.comment}}</p>
           <footer>
-            <b>Pesho</b>
+            <b>{{comment.creator}}</b>
             <cite title="Source Title">before {{dateFormating(comment.creationDate)}}</cite>
-            <button *ngIf="canDeleteCommnet(comment.creator)" (click)="deleteComment(comment._id)" type="button" class="btn btn-link text-danger text-right">Delete</button>
+            <button *ngIf="canDeleteCommnet(comment.creator)" (click)="deleteComment(comment?._id)" type="button" class="btn btn-link text-danger text-right">Delete</button>
           </footer>
         </blockquote>
       </div>

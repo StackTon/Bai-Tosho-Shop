@@ -22,12 +22,12 @@ function validateSignupForm(payload) {
     errors.password = 'Password must have at least 4 characters.'
   }
 
-  if (!payload || typeof payload.firstName !== 'string' || payload.firstName.trim().length === 0) {
+  if (!payload || typeof payload.firstName !== 'string') {
     isFormValid = false
     errors.firstName = 'Please provide your firstName.'
   }
 
-  if (!payload || typeof payload.lastName !== 'string' || payload.lastName.trim().length === 0) {
+  if (!payload || typeof payload.lastName !== 'string') {
     isFormValid = false
     errors.lastName = 'Please provide your lastName.'
   }
@@ -111,11 +111,11 @@ async function registerUser(userData) {
       message: 'You have successfully register!',
       token,
       username: userData.username,
-      isAdmin: fasle
+      isAdmin: false
     }
     
   } catch (e) {
-    console.log('here')
+    console.log(e);
     return errorHandler(e);
   }
 }

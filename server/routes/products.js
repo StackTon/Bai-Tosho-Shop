@@ -343,6 +343,12 @@ router.post('/user/remove/:productId', authCheck, (req, res) => {
         message: 'Successfuly get user info.',
         data: foundUser
       })
+    }).catch(e => {
+      return res.status(404).json({
+        success: false,
+        message: 'Error',
+        error: e.message
+      })
     })
   }).catch(e => {
     return res.status(404).json({

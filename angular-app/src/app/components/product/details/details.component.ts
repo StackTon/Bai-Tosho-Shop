@@ -31,18 +31,20 @@ export class DetailsComponent implements OnInit {
     private vcr: ViewContainerRef
   ) {
     this.toastr.setRootViewContainerRef(vcr);
-    this.productId = this.route.snapshot.params['productId'];
     this.commentModel = new CommentModel("");
+    this.productId = this.route.snapshot.params['productId'];
+    
   }
 
   commentSubmit() {
     this.detailsService.createCommnet(this.productId, this.commentModel.comment).subscribe(data => {
       if (data["success"]) {
-        this.detailsData["comments"].push(data["comment"])
-        this.commentModel.comment = "";
+        this.toastr.success(data["message"], 'Success!');
+        this.loadData();
+        this.commentModel.comment = ''
       }
       else {
-        // TODO handle error
+        this.toastr.error(data["message"], 'Error!');
       }
     })
   }
@@ -53,7 +55,12 @@ export class DetailsComponent implements OnInit {
 
   buy(id) {
     this.cart.buyProduct(id).subscribe(data => {
-      //todo notification
+      if (data["success"]) {
+        this.toastr.success(data["message"], 'Success!');
+      }
+      else {
+        this.toastr.error(data["message"], 'Error!');
+      }
     })
   }
 
@@ -70,8 +77,9 @@ export class DetailsComponent implements OnInit {
     })
   } 
 
-  ngOnInit() {
+  loadData(){
     this.detailsService.getDetailsData(this.productId).subscribe(data => {
+      console.log(data);
       this.detailsData = data;
       this.likes = data["likes"].length;
       let u = localStorage.getItem("username")
@@ -82,6 +90,10 @@ export class DetailsComponent implements OnInit {
         }
       }
     })
+  }
+
+  ngOnInit() {
+    this.loadData();
   }
 
   like(id) {
@@ -115,6 +127,7 @@ export class DetailsComponent implements OnInit {
   }
 
   deleteComment(id) {
+    this.productId = this.route.snapshot.params['productId'];
     this.detailsService.deleteCommnet(this.productId, id).subscribe(data => {
       if (data["success"]) {
         this.toastr.success(data["message"], 'Success!');        
